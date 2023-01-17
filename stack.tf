@@ -26,7 +26,7 @@ resource "aws_subnet" "three-tier-pub-sub01" {
   vpc_id     = aws_vpc.three-tier-stack.id
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "us-east-1a"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "Three-Tier-Stack"
@@ -37,7 +37,7 @@ resource "aws_subnet" "three-tier-pub-sub02" {
   vpc_id     = aws_vpc.three-tier-stack.id
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "us-east-1b"
+  availability_zone = "ap-south-1b"
 
   tags = {
     Name = "Three-Tier-Stack"
@@ -117,7 +117,7 @@ resource "aws_instance" "EC2Webserver1" {
   vpc_security_group_ids = [aws_security_group.three-tier-security-group-ec2.id]
   subnet_id              = aws_subnet.three-tier-pub-sub01.id
   key_name               = "cvonetappkeys"
-  availability_zone      = "us-east-1a"
+  availability_zone      = "ap-south-1a"
   tenancy                = "default"
   monitoring             = true
   tags = {
@@ -132,7 +132,7 @@ resource "aws_instance" "EC2Webserver2" {
   vpc_security_group_ids = [aws_security_group.three-tier-security-group-ec2.id]
   subnet_id              = aws_subnet.three-tier-pub-sub02.id
   key_name               = "cvonetappkeys"
-  availability_zone      = "us-east-1b"
+  availability_zone      = "ap-south-1b"
   tenancy                = "default"
   monitoring             = true
   tags = {
@@ -191,7 +191,9 @@ resource "aws_db_instance" "three-tier-db-stack" {
   network_type         = "IPV4"
   port                 = 3306
   engine               = "mysql"
-  availability_zone    = "us-east-1a"
+  availability_zone    = "ap-south-1
+  
+  a"
   engine_version       = "8.0.28"
   instance_class       = "db.t3.micro"
   username             = "admin"
